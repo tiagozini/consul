@@ -3,12 +3,12 @@
 ## [0.14.0](https://github.com/consul/consul/compare/v0.13...v0.14) - 2018-03-08
 
 ### Added
-- Alert message when a user deletes an investment project from "My activity" https://github.com/consul/consul/pull/2385
 - Admin newsletter emails https://github.com/consul/consul/pull/2462
 - Admin emails list download https://github.com/consul/consul/pull/2466
+- Alert message when a user deletes an investment project from "My activity" https://github.com/consul/consul/pull/2385
 - Missing polls button on help page https://github.com/consul/consul/pull/2452
 - New legislation processes section on help page https://github.com/consul/consul/pull/2452
-- docs\(readme\): Include Node.js as requirement https://github.com/consul/consul/pull/2486
+- Docs\(readme\): Include Node.js as requirement https://github.com/consul/consul/pull/2486
 
 ### Changed
 - Improved Document lists https://github.com/consul/consul/pull/2490
