@@ -1,3 +1,74 @@
+# Change Log
+
+## [v0.14](https://github.com/consul/consul/tree/v0.14) (2018-03-08)
+[Full Changelog](https://github.com/consul/consul/compare/v0.11.1...v0.14)
+
+**Implemented enhancements:**
+
+- Documents list on show views [\#2335](https://github.com/consul/consul/issues/2335)
+
+**Fixed bugs:**
+
+- Fix /admin/comments internal error [\#2412](https://github.com/consul/consul/issues/2412)
+
+**Closed issues:**
+
+- Prevent empty emails on newsletters & Email list download [\#2502](https://github.com/consul/consul/issues/2502)
+- Allow Users to Mark notifications as read/unread [\#2494](https://github.com/consul/consul/issues/2494)
+- Backport from Madrid Newsletter email deliver [\#2488](https://github.com/consul/consul/issues/2488)
+- Fix UserSegment: feasible & undecided investment authors [\#2487](https://github.com/consul/consul/issues/2487)
+- Remove from emails list those with email digest disabled [\#2480](https://github.com/consul/consul/issues/2480)
+- Admin download emails list translation improvements [\#2479](https://github.com/consul/consul/issues/2479)
+- statusCode=500, statusMessage='Internal Server Error' [\#2457](https://github.com/consul/consul/issues/2457)
+- Allow user to establish his preferred locale [\#2435](https://github.com/consul/consul/issues/2435)
+- Show investment links only on balloting or later [\#2377](https://github.com/consul/consul/issues/2377)
+- Add alert message when a user deletes an investment project from "My activity" [\#2363](https://github.com/consul/consul/issues/2363)
+- Admin send emails [\#2318](https://github.com/consul/consul/issues/2318)
+- Add internal comments to investment's from valuators [\#2309](https://github.com/consul/consul/issues/2309)
+- Release v0.13 [\#2232](https://github.com/consul/consul/issues/2232)
+- Admin download emails list [\#2120](https://github.com/consul/consul/issues/2120)
+- Admin - Reorganize [\#1779](https://github.com/consul/consul/issues/1779)
+
+**Merged pull requests:**
+
+- Valuators cannot reopen finished valuations [\#2518](https://github.com/consul/consul/pull/2518) ([bertocq](https://github.com/bertocq))
+- Remove empty emails from user segment usages [\#2516](https://github.com/consul/consul/pull/2516) ([bertocq](https://github.com/bertocq))
+- Improve Github's Pull Request Template file [\#2515](https://github.com/consul/consul/pull/2515) ([bertocq](https://github.com/bertocq))
+- Flaky spec fix: Debates Show: "Back" link directs to previous page [\#2513](https://github.com/consul/consul/pull/2513) ([bertocq](https://github.com/bertocq))
+- Fix Email Spec comment random failures [\#2506](https://github.com/consul/consul/pull/2506) ([bertocq](https://github.com/bertocq))
+- Fixed how newsletters controller and mailer handle recipients [\#2492](https://github.com/consul/consul/pull/2492) ([MariaCheca](https://github.com/MariaCheca))
+- Fix UserSegment feasible and undecided investment authors [\#2491](https://github.com/consul/consul/pull/2491) ([MariaCheca](https://github.com/MariaCheca))
+- Improve Documents list [\#2490](https://github.com/consul/consul/pull/2490) ([decabeza](https://github.com/decabeza))
+- UI fixes [\#2489](https://github.com/consul/consul/pull/2489) ([decabeza](https://github.com/decabeza))
+- docs\(readme\): Include Node.js as requirement [\#2486](https://github.com/consul/consul/pull/2486) ([aitbw](https://github.com/aitbw))
+- Admin newsletter email refactor [\#2474](https://github.com/consul/consul/pull/2474) ([bertocq](https://github.com/bertocq))
+- Admin emails list download [\#2466](https://github.com/consul/consul/pull/2466) ([MariaCheca](https://github.com/MariaCheca))
+- Design minor fixes [\#2465](https://github.com/consul/consul/pull/2465) ([decabeza](https://github.com/decabeza))
+- Admin newsletter emails [\#2462](https://github.com/consul/consul/pull/2462) ([MariaCheca](https://github.com/MariaCheca))
+- Fix flaky spec: Residence Assigned officers Error [\#2458](https://github.com/consul/consul/pull/2458) ([vicentemendozam](https://github.com/vicentemendozam))
+- Fixed flaky spec: missing comment on legislation annotation [\#2455](https://github.com/consul/consul/pull/2455) ([raul-fuentes](https://github.com/raul-fuentes))
+- Fix flaky spec: random investments order scenario  [\#2454](https://github.com/consul/consul/pull/2454) ([raul-fuentes](https://github.com/raul-fuentes))
+- Fix flaky spec: users without email should not receive emails [\#2453](https://github.com/consul/consul/pull/2453) ([iagirre](https://github.com/iagirre))
+- Help text [\#2452](https://github.com/consul/consul/pull/2452) ([decabeza](https://github.com/decabeza))
+- Expire Coveralls badge cache [\#2445](https://github.com/consul/consul/pull/2445) ([voodoorai2000](https://github.com/voodoorai2000))
+- Improve spec boot time and clean up logs [\#2444](https://github.com/consul/consul/pull/2444) ([voodoorai2000](https://github.com/voodoorai2000))
+- Show investment links only on phase balloting or later  [\#2386](https://github.com/consul/consul/pull/2386) ([raul-fuentes](https://github.com/raul-fuentes))
+- Add alert message when a user deletes an investment project from "My activity" [\#2385](https://github.com/consul/consul/pull/2385) ([iagirre](https://github.com/iagirre))
+
+## [v0.11.1](https://github.com/consul/consul/tree/v0.11.1) (2018-02-05)
+[Full Changelog](https://github.com/consul/consul/compare/v0.12.1...v0.11.1)
+
+## [v0.12.1](https://github.com/consul/consul/tree/v0.12.1) (2018-02-05)
+[Full Changelog](https://github.com/consul/consul/compare/v0.13...v0.12.1)
+
+**Fixed bugs:**
+
+- List Budget Investment's milestones ordered by publication date [\#2429](https://github.com/consul/consul/issues/2429)
+
+**Closed issues:**
+
+- Only change budget slugs if its on draft phase [\#2419](https://github.com/consul/consul/issues/2419)
+
 # Changelog
 All notable changes to this project will be documented in this file.
 
@@ -262,3 +333,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [0.10.0]: https://github.com/consul/consul/compare/v0.9...v0.10
 [0.9.0]: https://github.com/consul/consul/compare/v0.8...v0.9
 [0.8.0]: https://github.com/consul/consul/compare/v0.7...v0.8
+
+
+\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
