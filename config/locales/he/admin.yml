@@ -37,7 +37,6 @@ he:
         title: Participatory budgets
         new_link: Create new budget
         filters:
-          current: Open
           finished: Finished
         budget_investments: See budget investments
         table_name: Name
@@ -74,14 +73,10 @@ he:
         valuator_filter_all: All valuators
         tags_filter_all: All tags
         filters:
-          valuation_open: Open
-          without_admin: Without assigned admin
-          managed: Managed
-          valuating: Under valuation
-          valuation_finished: Valuation finished
-          valuation_finished_feasible: Val. fin. Feasible
-          selected: Selected
           all: All
+          without_admin: Without assigned admin
+          valuation_finished: Valuation finished
+          selected: Selected
         title: Investment projects
         assigned_admin: Assigned administrator
         no_admin_assigned: No admin assigned
@@ -99,16 +94,14 @@ he:
         table_geozone: "Scope of operation"
         table_feasibility: "Feasibility"
         table_valuation_finished: "Val. Fin."
-        table_selection: "Selection"
       show:
         assigned_admin: Assigned administrator
         assigned_valuators: Assigned valuators
-        info: '%{budget_name} - Group: %{group_name} - Investment project %{id}'
+        info: "%{budget_name} - Group: %{group_name} - Investment project %{id}"
         edit: Edit
         edit_classification: Edit classification
         by: By
         sent: Sent
-        group: Grupo
         heading: Partida
         dossier: Dossier
         edit_dossier: Edit dossier
