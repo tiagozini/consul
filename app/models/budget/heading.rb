@@ -1,6 +1,6 @@
 class Budget
   class Heading < ApplicationRecord
-    OSM_DISTRICT_LEVEL_ZOOM = 12
+    OSM_DISTRICT_LEVEL_ZOOM = 10
 
     include Sluggable
 
