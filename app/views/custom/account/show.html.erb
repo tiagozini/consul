@@ -1,0 +1,244 @@
+<div class="row account">
+  <div class="small-12 column">
+    <%= avatar_image(@account, seed: @account.id, size: 80, class: "margin-bottom") %>
+
+    <h1 class="inline-block"><%= t("account.show.title") %></h1>
+    <% if session[:referrer_poll] && session[:referrer_poll].match("polls")   %>
+      <div class="callout primary">
+        <%=raw t('account.show.link_back_to_the_poll', poll_link: link_to(t('account.show.here'), session[:referrer_poll])) %>
+      </div> 
+    <% end %>
+    <% if session[:referrer_poll] && session[:referrer_poll].match("proposals")   %>
+      <div class="callout primary">
+        <%=raw t('account.show.link_back_to_the_proposals', proposal_link: link_to(t('account.show.here'), session[:referrer_poll])) %>
+      </div> 
+    <% end %>    
+    <% if !current_user.level_three_verified? || !current_user.account_complete? %>    
+      <div id="error_explanation" data-alert class="callout alert" data-closable>      
+        <%= t("account.show.incomplete_account") %>    
+      </div>
+    <% end %>
+    <%= form_for @account, as: :account, url: account_path do |f| %>
+      <%= render "shared/errors", resource: @account %>
+
+      <div class="row margin-bottom">
+        <div class="small-12 medium-7 column">
+
+          <h2><%= t("account.show.personal")%></h2>
+
+          <div class="small-12 medium-10">
+            <% if @account.organization? %>
+              <%= f.fields_for :organization do |fo| %>
+                <%= fo.text_field :name, autofocus: true, maxlength: Organization.name_max_length, placeholder: t("account.show.organization_name_label") %>
+                <%= fo.text_field :responsible_name, autofocus: true, maxlength: Organization.responsible_name_max_length, placeholder: t("account.show.organization_responsible_name_placeholder") %>
+              <% end %>
+              <%= f.text_field :phone_number, placeholder: t("account.show.phone_number_label") %>
+            <% else %>
+              <%= f.text_field :username, maxlength: User.username_max_length, placeholder: t("account.show.username_label") %>
+            <% end %>
+          </div>          
+
+          <div class="row">
+            <div class="small-12 medium-10">
+              <div class="small-12 medium-5 column">
+                <%= f.label t("verification.residence.new.document_type_label") %>
+                <%= f.select :document_type, document_types, prompt: "", label: false %>
+              </div>
+              <div class="small-12 medium-5 column end">
+      
+                <div class="inline-block">
+                  <%= f.label t("verification.residence.new.document_number") %>
+                </div>
+      
+                <div class="inline-block" data-toggle="info-document-number">
+                  <span class="icon-help"></span>
+                  <span class="show-for-sr"><%= t("verification.residence.new.document_number_help_title") %></span>
+                </div>
+      
+                <div class="dropdown-pane" id="info-document-number" data-dropdown
+                    data-hover="true" data-hover-pane="true">
+                  <%= t("verification.residence.new.document_number_help_text_html") %>
+                </div>
+      
+                <%= f.text_field :document_number, label: false  %>
+              </div>
+            </div>
+          </div>  
+          <div class="checkbox">
+            <%= f.check_box :public_activity, title: t('account.show.public_activity_label'), label: false %>
+            <%= f.label :public_activity do %>
+              <%= t("account.show.public_activity_label") %>
+            <% end %>
+          </div>
+
+          <div class="checkbox">
+            <%= f.check_box :public_interests, title: t('account.show.public_interests_label'), label: false %>
+            <%= f.label :public_interests do %>
+              <%= t("account.show.public_interests_label") %>
+            <% end %>
+          </div>
+            <%= f.fields_for :address do |fa| %>            
+              <h2 class="subtitulo"><%= t("account.show.address.label")%></h2>
+              
+              <div class="small-12 medium-5">                            
+                  <div class="inline-block">
+                    <%= f.label t("account.show.address.cep_label") %>
+                  </div>
+        
+                  <div class="inline-block" data-toggle="info-postal-code">
+                    <span class="icon-help"></span>
+                    <span class="show-for-sr"><%= t("account.show.address.postal_code_help_text_title") %></span>
+                  </div>
+        
+                  <div class="dropdown-pane" id="info-postal-code" data-dropdown
+                      data-hover="true" data-hover-pane="true">
+                    <%= t("account.show.address.postal_code_help_text_html") %>
+                  </div>
+        
+                  <%= fa.text_field :postal_code, label: false, placeholder: t("account.show.address.cep_label")  %>
+              </div>                  
+                  <!-- div class="small-12 medium-10">                      
+                    <%= fa.text_field :neighbourhood, label:  t("account.show.address.neighbourhood_label"), placeholder: t("account.show.address.neighbourhood_label") %>
+                  </div -->                         
+                  <div class="small-12 medium-10">                            
+                    <div class="inline-block">
+                      <%= f.label t("account.show.address.street_label") %>
+                    </div>
+          
+                    <div class="inline-block" data-toggle="info-street">
+                      <span class="icon-help"></span>
+                      <span class="show-for-sr"><%= t("account.show.address.street_label") %></span>
+                    </div>
+          
+                    <div class="dropdown-pane" id="info-street" data-dropdown
+                        data-hover="true" data-hover-pane="true">
+                      <%= t("account.show.address.street_placeholder") %>
+                    </div>
+          
+                    <%= fa.text_field :street, label: false, placeholder: t("account.show.address.street_label")  %>
+                  </div>                       
+                                          
+                <div class="small-12 medium-5 inline-block">                                                  
+                  <%= fa.text_field :number, label:  t("account.show.address.number_label"), placeholder: t("account.show.address.number_label") %>
+                </div>
+                <div class="small-12 medium-5 inline-block">                        
+                  <%= fa.text_field :complement, label:  t("account.show.address.complement_label"), placeholder: t("account.show.address.complement_label") %>
+              </div>              
+            <% end %>                          
+
+
+
+
+          <% if @account.email.present? %>
+            <h2 class="subtitulo"><%= t("account.show.notifications")%></h2>
+
+            <div class="checkbox">
+              <%= f.check_box :email_on_comment, title: t('account.show.email_on_comment_label'), label: false %>
+              <%= f.label :email_on_comment do %>
+                <%= t("account.show.email_on_comment_label") %>
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.check_box :email_on_comment_reply, title: t('account.show.email_on_comment_reply_label'), label: false %>
+              <%= f.label :email_on_comment_reply do %>
+                <%= t("account.show.email_on_comment_reply_label") %>
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.check_box :newsletter, title: t('account.show.subscription_to_website_newsletter_label'), label: false %>
+              <%= f.label :newsletter do %>
+                <%= t("account.show.subscription_to_website_newsletter_label") %>
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.check_box :email_digest, title: t('account.show.email_digest_label'), label: false %>
+              <%= f.label :email_digest do %>
+                <%= t("account.show.email_digest_label") %>
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.check_box :email_on_direct_message, title: t('account.show.email_on_direct_message_label'), label: false %>
+              <%= f.label :email_on_direct_message do %>
+                <%= t("account.show.email_on_direct_message_label") %>
+              <% end %>
+            </div>
+            <div class="checkbox">
+              <%= f.check_box :email_on_proposal_moderation, title: t('account.show.email_on_proposal_moderation_label'), label: false %>
+               <%= f.label :email_on_proposal_moderation do %>
+                <%= t("account.show.email_on_proposal_moderation_label") %>
+              <% end %>
+            </div>
+          <% end %>
+
+          <% if @account.official_level == 1 %>
+            <div>
+              <%= f.label :official_position_badge do %>
+                <%= f.check_box :official_position_badge,
+                                 title: t('account.show.official_position_badge_label'),
+                                 label: false %>
+                <span class="checkbox">
+                  <%= t("account.show.official_position_badge_label") %>
+                </span>
+              <% end %>
+            </div>
+          <% end %>
+
+          <%= f.submit t("account.show.save_changes_submit"), class: "button margin" %>
+        </div>
+
+        <div class="user-permissions small-12 medium-5 column">
+          <h2><%= t("account.show.user_permission_title") %></h2>
+
+          <p><%= t("account.show.user_permission_info") %></p>
+
+          <ul>
+            <li><span class="icon-check"></span>&nbsp;<%= t("account.show.user_permission_debates") %></li>
+            <li>
+              <% if current_user.level_two_or_three_verified? && current_user.account_complete? %>            
+                <span class="icon-check"></span>
+              <% else %>
+                <span class="icon-x"></span>
+              <% end %>              
+              <%= t("account.show.user_permission_proposal") %>              
+            </li>
+            <li>
+              <% if current_user.level_two_or_three_verified? && current_user.account_complete? %>
+                <span class="icon-check"></span>
+              <% else %>
+                <span class="icon-x"></span>
+              <% end %>
+              <%= t("account.show.user_permission_support_proposal") %>
+            </li>
+            <li>
+              <% if current_user.level_three_verified? && current_user.account_complete? %>
+                <span class="icon-check"></span>
+              <% else %>
+                <span class="icon-x"></span>
+              <% end %>
+              <%= t("account.show.user_permission_votes") %>
+            </li>        
+          </ul>
+
+          <% unless @account.organization? %>
+            <div>
+              <span class="verify-account">
+              <% if current_user.level_three_verified? && current_user.account_complete? %>       
+                <% elsif current_user.level_three_verified? %>
+                <% elsif current_user.level_two_verified? %>
+                  <%= link_to t("account.show.finish_verification"), verification_path, class: "button success" %>
+                <% else %>
+                  <%= link_to t("account.show.verify_my_account"), verification_path, class: "button success" %>
+                <% end %>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

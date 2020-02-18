@@ -1,0 +1,52 @@
+<header>
+
+  <div class="row">
+    <div class="top-bar">
+      <div class="top-bar-title">
+          <%= link_to root_path, class: "logo", accesskey: "0" do %>
+            <%= image_tag(image_path_for('marca-opdigital.png'), alt: "Marca OP Digital") %>
+            <span class="show-for-sr"><%= setting['org_name'] %></span>
+          <% end %>
+        </div>
+
+      <div class="title-bar" data-responsive-toggle="responsive_menu" data-hide-for="large">
+        <button class="float-right button menu-button" data-toggle="responsive_menu">
+          <span class="menu-icon dark" ></span>
+          <%= t("application.menu")%>
+        </button>
+      </div>
+
+      <div id="responsive_menu">
+        <div class="top-bar-right">
+          <ul class="dropdown menu user-menu" data-dropdown-menu>
+            <%= render "shared/admin_login_items" %>
+            <%= render "layouts/notification_item" %>
+            <%= render "devise/menu/login_items" %>
+          </ul>
+
+          <div class="show-for-small-only">
+            <div class="subnavigation row">
+              <%= render "shared/subnavigation" %>
+              <div class="small-12 column">
+                <%= render "shared/top_links" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subnavigation expanded">
+    <div class="row">
+      <div class="hide-for-small-only">
+        <%= render "shared/subnavigation" %>
+        <%= render "shared/top_links" %>
+      </div>
+      <div class="small-12 medium-3 column">
+        <%= yield :header_addon %>
+      </div>
+    </div>
+  </div>
+
+</header>
