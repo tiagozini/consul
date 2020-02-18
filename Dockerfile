@@ -3,6 +3,11 @@ FROM ruby:2.3.8
 
 ENV DEBIAN_FRONTEND noninteractive
 
+ENV HTTP_PROXY="http://lproxy1.procempa.com.br:3128/"
+ENV http_proxy="http://lproxy1.procempa.com.br:3128/"
+ENV HTTPS_PROXY="http://lproxy1.procempa.com.br:3128/"
+ENV https_proxy="http://lproxy1.procempa.com.br:3128/"
+ENV NO_PROXY="localhost, 127.0.0.*, 10.*, 192.168.*, *.procempa.com.br, *.portoalegre.rs.gov.br, *.pmpa.ad, lpmpa-*, lintranet*, lsisweb*, intranet*, sisweb*, webmailpmpa.portoalegre.rs.gov.br, pmpa-intranet, pmpa.ad"
 # Install essential Linux packages
 RUN apt-get update -qq
 RUN apt-get install -y build-essential libpq-dev postgresql-client nodejs imagemagick sudo libxss1 libappindicator1 libindicator7 unzip memcached
@@ -36,7 +41,7 @@ COPY Gemfile.lock Gemfile.lock
 COPY Gemfile_custom Gemfile_custom
 
 # Prevent bundler warnings; ensure that the bundler version executed is >= that which created Gemfile.lock
-RUN gem install bundler
+#RUN gem install bundler
 
 # Finish establishing our Ruby environment
 RUN bundle install --full-index
@@ -55,5 +60,4 @@ COPY . .
 
 # Define the script we want run once the container boots
 # Use the "exec" form of CMD so our script shuts down gracefully on SIGTERM (i.e. `docker stop`)
-# CMD [ "config/containers/app_cmd.sh" ]
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+CMD [ "./app_cmd.sh" ]
